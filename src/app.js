@@ -15,7 +15,7 @@ app.use(helmet());
 app.use(morgan("common"));
 app.use(bodyParser.json());
 
-const mongoUrl = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@karnati.febc5.mongodb.net/travelLog?retryWrites=true&w=majority`;
+const mongoUrl = process.env.MONGO_URI;
 
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
@@ -25,9 +25,9 @@ mongoose.connect(mongoUrl, {
 
 const db = mongoose.connection;
 
-db.on("error", console.error.bind(console, "connection error:"));
+db.on("error", console.error.bind(console, "database connection error:"));
 db.once("open", function () {
-  console.log("db connected");
+  console.log("database connection ok");
 });
 
 const PORT = process.env.port || 2000;
