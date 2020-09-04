@@ -1,0 +1,22 @@
+.marker {
+    width: 4rem;
+    height: 4rem;
+
+    .svg-container {
+        transform: translate(-50%, -100%);
+        width: 4rem;
+        height: 4rem;
+
+        &.red {
+            svg {
+                fill: green;
+            }
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            fill: #2C697B;
+        }
+    }
+}

@@ -1,0 +1,41 @@
+.allLogs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+
+    &.special {
+        margin-bottom: 3rem;
+    }
+
+    &--item {
+        color: black;
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 1rem .5rem;
+        cursor: pointer;
+        font-size: 1.7rem;
+        font-weight: 600;
+        text-transform: capitalize;
+
+        &.suggest {
+            padding: 2rem 1rem;
+        }
+
+        &:hover {
+            background: black;
+            color: white;
+        }
+
+        & .date {
+            font-size: 1.4rem;
+            font-weight: 300;
+        }
+    }
+}
