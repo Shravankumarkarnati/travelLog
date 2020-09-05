@@ -4,8 +4,9 @@ const helmet = require("helmet");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-require("dotenv").config();
+const path = require("path");
 
+require("dotenv").config();
 const routes = require("./routes/api");
 
 const app = express();
@@ -48,5 +49,13 @@ app.use((error, req, res, next) => {
     stack: process.env.NODE_ENV === "production" ? "🥞" : error.stack,
   });
 });
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("./client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));

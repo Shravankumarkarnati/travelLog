@@ -3,7 +3,10 @@ import axios from "axios";
 class API {
   constructor() {
     this.baseURL = "http://localhost:2000";
-    this.accessKey =
+    if (process.env.NODE_ENV === "production") {
+      this.baseURL = "https://mern-travel-log.herokuapp.com";
+    }
+    this.mapBoxAccessKey =
       "pk.eyJ1IjoidGhlLW11dGFudCIsImEiOiJja2VqaTJtb20xcHRqMzFqeTdhbjhxZGVwIn0.WHABj0QVsLs3aVXfx8QrKg";
   }
 
@@ -44,14 +47,14 @@ class API {
     const results = await axios.get(
       `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
         text
-      )}.json?access_token=${this.accessKey}&country=US,CA`
+      )}.json?access_token=${this.mapBoxAccessKey}&country=US,CA`
     );
     return results.data.features;
   };
 
   getAddressWithCord = async (cor) => {
     const place = await axios.get(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${cor[0]},${cor[1]}.json?access_token=${this.accessKey}`
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${cor[0]},${cor[1]}.json?access_token=${this.mapBoxAccessKey}`
     );
     const data = place.data.features;
     data.forEach((cur) => {
