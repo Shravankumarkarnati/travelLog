@@ -9,7 +9,7 @@ router.get("/", (req, res, next) => {
   })();
 });
 
-router.post("/api/create", (req, res, next) => {
+router.post("/create", (req, res, next) => {
   const log = new logModel(req.body);
   (async () => {
     const logged = await log.save();
@@ -17,7 +17,7 @@ router.post("/api/create", (req, res, next) => {
   })();
 });
 
-router.post("/api/update", (req, res) => {
+router.post("/update", (req, res) => {
   let log = req.body;
   const id = log._id;
   delete log._id;
@@ -27,7 +27,7 @@ router.post("/api/update", (req, res) => {
   })();
 });
 
-router.delete("/api/delete/:id", (req, res) => {
+router.delete("/delete/:id", (req, res) => {
   const id = req.params.id;
   (async () => {
     const del = await logModel.deleteOne({ _id: id });

@@ -1,13 +1,16 @@
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const helmet = require("helmet");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const path = require("path");
 
 require("dotenv").config();
-const routes = require("./routes/api");
+
+const routes = require("./src/routes/api");
+
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 
@@ -31,9 +34,17 @@ db.once("open", () => {
   console.log("database connection ok");
 });
 
-const PORT = process.env.port || 2000;
+// if (
+//   process.env.NODE_ENV === "production" ||
+//   process.env.NODE_ENV === "staging"
+// ) {
+//   app.use(express.static("./client/build"));
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname + "/client/build/index.html"));
+//   });
+// }
 
-app.use(routes);
+app.use("/api", routes);
 
 app.use((req, res, next) => {
   const error = new Error(`Not Found - ${req.originalUrl}`);
@@ -46,16 +57,11 @@ app.use((error, req, res, next) => {
   res.status(statusCode);
   res.json({
     message: error.message,
-    stack: process.env.NODE_ENV === "production" ? "🥞" : error.stack,
+    stack: error.stack,
+    // stack: process.env.NODE_ENV === "production" ? "🥞" : error.stack,
   });
 });
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("./client/build"));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
-
-app.listen(PORT, () => console.log(`Server running on ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

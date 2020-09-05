@@ -1,0 +1,38 @@
+{
+  "name": "travel-log-mern",
+  "version": "1.0.0",
+  "description": "Travel Log - A full stack mern app built using react mapbox gl.",
+  "engines": {
+    "node": "12.x",
+    "npm": "6.14.x"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.1.0",
+    "mongoose": "^5.10.2",
+    "morgan": "^1.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "create-react-app",
+    "react",
+    "mern stack",
+    "react mapbox gl"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

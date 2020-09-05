@@ -2,22 +2,22 @@ import axios from "axios";
 
 class API {
   constructor() {
-    this.baseURL = "http://localhost:2000";
-    if (process.env.NODE_ENV === "production") {
-      this.baseURL = "https://mern-travel-log.herokuapp.com";
-    }
+    this.baseURL =
+      process.env.NODE_ENV !== "production"
+        ? "http://localhost:5000/api"
+        : "https://travel-log-bckend.herokuapp.com/api";
     this.mapBoxAccessKey =
       "pk.eyJ1IjoidGhlLW11dGFudCIsImEiOiJja2VqaTJtb20xcHRqMzFqeTdhbjhxZGVwIn0.WHABj0QVsLs3aVXfx8QrKg";
   }
 
   getAllLocations = async () => {
-    const places = await axios.get(this.baseURL);
+    const places = await axios.get(`${this.baseURL}`);
     const locations = places.data;
     return locations;
   };
 
   createLocation = async (data) => {
-    await fetch(`${this.baseURL}/api/create`, {
+    await fetch(`${this.baseURL}/create`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -28,12 +28,12 @@ class API {
   };
 
   deleteLocation = async (id) => {
-    const del = await axios.delete(`${this.baseURL}/api/delete/${id}`);
+    const del = await axios.delete(`${this.baseURL}/delete/${id}`);
     return del;
   };
 
   updateLocation = async (data) => {
-    await fetch(`${this.baseURL}/api/update`, {
+    await fetch(`${this.baseURL}/update`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
