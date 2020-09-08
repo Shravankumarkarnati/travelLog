@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import PopUpContext from "../utils/context";
-import moment from "moment";
 
 import API from "../utils/api";
 
@@ -11,6 +10,7 @@ import { GoPerson } from "react-icons/go";
 import CreateLog from "./createLog";
 
 import "./styles/allLogs.scss";
+import AllLogs from "./allLogs";
 
 const SideBody = () => {
   const { context, changeContext } = useContext(PopUpContext);
@@ -88,6 +88,26 @@ const SideBody = () => {
     });
   };
 
+  const SecondActive = () =>
+    context.current.content ? (
+      <SelectedLog
+        log={context.current.content}
+        edit={context.current.edit}
+        backClick={_backBtnClick}
+        editClick={_editBtnClick}
+        delClick={_deleteBtnClick}
+        updateClick={_updateBtnClick}
+        cancelClick={cancelBtnClick}
+      />
+    ) : context.allLogs ? (
+      <AllLogs
+        allLogs={context.allLogs}
+        _handleItemHover={_handleItemHover}
+        _handleItemLeave={_handleItemLeave}
+        _handleLogClick={_handleLogClick}
+      />
+    ) : null;
+
   return (
     <div className="sideBody">
       <header>
@@ -95,40 +115,11 @@ const SideBody = () => {
       </header>
       <Nav />
       <main>
-        {context.active === 1 ? <SearchTab /> : null}
-        {context.active === 2 ? (
-          context.current.content ? (
-            <SelectedLog
-              log={context.current.content}
-              edit={context.current.edit}
-              backClick={_backBtnClick}
-              editClick={_editBtnClick}
-              delClick={_deleteBtnClick}
-              updateClick={_updateBtnClick}
-              cancelClick={cancelBtnClick}
-            />
-          ) : context.allLogs ? (
-            <div className="allLogs">
-              {context.allLogs.map((cur) => {
-                return (
-                  <p
-                    className="allLogs--item"
-                    key={cur._id}
-                    onClick={() => _handleLogClick(cur)}
-                    onMouseEnter={() => _handleItemHover(cur)}
-                    onMouseLeave={() => _handleItemLeave()}
-                  >
-                    <span className="title">{cur.title}</span>
-                    <span className="date">
-                      {moment(cur.visitedDate).format("Do MMMM YYYY")}
-                    </span>
-                  </p>
-                );
-              })}
-            </div>
-          ) : null
-        ) : null}
-        {context.active === 3 ? <CreateLog /> : null}
+        {
+          { 1: <SearchTab />, 2: <SecondActive />, 3: <CreateLog /> }[
+            context.active
+          ]
+        }
       </main>
       <div className="floater" title="Login">
         <GoPerson title="Login" />

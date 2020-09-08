@@ -1,6 +1,6 @@
 nav {
     width: 100%;
-    background: black;
+    background: white;
     border-radius: .5rem;
     margin-top: 2rem;
 
@@ -11,9 +11,10 @@ nav {
         list-style: none;
 
         &--item {
+            border-radius: .5rem;
             flex-grow: 1;
             text-align: center;
-            color: white;
+            color: black;
             font-size: 1.5rem;
             font-weight: 500;
             text-transform: uppercase;
@@ -22,8 +23,8 @@ nav {
 
             &.active,
             &:hover {
-                background: white;
-                color: black;
+                background: black;
+                color: white;
             }
         }
     }

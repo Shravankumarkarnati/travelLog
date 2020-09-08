@@ -14,7 +14,16 @@ const SearchTab = () => {
 
   const { inputText, setInputText, searchResults } = useGetSearchResults();
 
-  const _handleItemClick = (item) => {};
+  const _handleItemClick = (item) => {
+    changeContext({
+      ...context,
+      active: 3,
+      data: {
+        cord: item.geometry.coordinates,
+        suggest: [item],
+      },
+    });
+  };
 
   const _handleItemHover = (item) => {
     changeContext({
