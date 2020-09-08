@@ -4,19 +4,20 @@
 
     .svg-container {
         transform: translate(-50%, -100%);
-        width: 4rem;
-        height: 4rem;
+        width: 2.5rem;
+        height: 2.5rem;
 
-        &.red {
+        &.highlight {
             svg {
-                fill: green;
+                fill: white;
+                transform: scale(1.5);
             }
         }
 
         svg {
             width: 100%;
             height: 100%;
-            fill: #2C697B;
+            fill: white;
         }
     }
 }

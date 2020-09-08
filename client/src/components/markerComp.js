@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { RiMapPinRangeLine } from "react-icons/ri";
+import { FaMapPin } from "react-icons/fa";
 import { Marker } from "react-map-gl";
 import PopUpContext from "../utils/context";
 import "./styles/markerComp.scss";
@@ -15,7 +15,7 @@ const MarkerComp = ({ locations }) => {
           latitude={context.data.cord[1]}
         >
           <div className="svg-container">
-            <RiMapPinRangeLine />
+            <FaMapPin />
           </div>
         </Marker>
       ) : null}
@@ -40,7 +40,7 @@ const MarkerComp = ({ locations }) => {
                 });
               }}
             >
-              <RiMapPinRangeLine />
+              <FaMapPin />
             </div>
           </Marker>
         );

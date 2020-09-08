@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import PopUpContext from "../utils/context";
+import moment from "moment";
 
 import API from "../utils/api";
 
-import CreateLog from "./createLog";
 import SelectedLog from "./selectedLog";
 import Nav from "./nav";
 import SearchTab from "./searchTab";
+import { GoPerson } from "react-icons/go";
+import CreateLog from "./createLog";
 
 import "./styles/allLogs.scss";
 
@@ -53,6 +55,16 @@ const SideBody = () => {
     window.location.reload(true);
   };
 
+  const cancelBtnClick = () => {
+    changeContext({
+      ...context,
+      current: {
+        ...context.current,
+        edit: false,
+      },
+    });
+  };
+
   const _handleLogClick = (log) => {
     changeContext({
       ...context,
@@ -60,6 +72,19 @@ const SideBody = () => {
         content: log,
         edit: false,
       },
+    });
+  };
+  const _handleItemHover = (item) => {
+    changeContext({
+      ...context,
+      tempLocation: item.location.coordinates,
+    });
+  };
+
+  const _handleItemLeave = () => {
+    changeContext({
+      ...context,
+      tempLocation: null,
     });
   };
 
@@ -80,6 +105,7 @@ const SideBody = () => {
               editClick={_editBtnClick}
               delClick={_deleteBtnClick}
               updateClick={_updateBtnClick}
+              cancelClick={cancelBtnClick}
             />
           ) : context.allLogs ? (
             <div className="allLogs">
@@ -89,10 +115,12 @@ const SideBody = () => {
                     className="allLogs--item"
                     key={cur._id}
                     onClick={() => _handleLogClick(cur)}
+                    onMouseEnter={() => _handleItemHover(cur)}
+                    onMouseLeave={() => _handleItemLeave()}
                   >
                     <span className="title">{cur.title}</span>
                     <span className="date">
-                      {cur.visitedDate.split("T")[0]}
+                      {moment(cur.visitedDate).format("Do MMMM YYYY")}
                     </span>
                   </p>
                 );
@@ -102,6 +130,9 @@ const SideBody = () => {
         ) : null}
         {context.active === 3 ? <CreateLog /> : null}
       </main>
+      <div className="floater" title="Login">
+        <GoPerson title="Login" />
+      </div>
       <footer>
         <p>Shravan Kumar Karnati &copy;</p>
       </footer>

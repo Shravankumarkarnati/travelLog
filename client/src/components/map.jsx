@@ -17,7 +17,8 @@ const Map = ({ onDblClick, children }) => {
       className="mapBox"
       mapboxApiAccessToken="pk.eyJ1IjoidGhlLW11dGFudCIsImEiOiJja2VqaTJtb20xcHRqMzFqeTdhbjhxZGVwIn0.WHABj0QVsLs3aVXfx8QrKg"
       {...viewport}
-      mapStyle="mapbox://styles/mapbox/streets-v11"
+      // mapStyle="mapbox://styles/mapbox/streets-v11"
+      mapStyle="mapbox://styles/the-mutant/ckeu37zzz9mur19mgz2fda2dz"
       onViewportChange={(nextViewport) => setViewport(nextViewport)}
       onDblClick={onDblClick}
     >

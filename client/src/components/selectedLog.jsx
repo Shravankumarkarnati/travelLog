@@ -9,13 +9,14 @@ const SelectedLog = ({
   editClick,
   delClick,
   updateClick,
+  cancelClick,
 }) => {
   const [editDetails, setEditDetails] = useState({
     ...log,
   });
 
   return (
-    <div className="selectedLog">
+    <div className={edit ? "selectedLog edit" : "selectedLog"}>
       <div className="item">
         <label htmlFor="title"> Title</label>
         <input
@@ -75,15 +76,20 @@ const SelectedLog = ({
         />
       </div>
       <div className="btnContainer">
-        <button className="btn" onClick={backClick}>
-          Back
-        </button>
         {edit ? (
-          <button className="btn" onClick={() => updateClick(editDetails)}>
-            Update
-          </button>
+          <>
+            <button className="btn" onClick={cancelClick}>
+              Cancel
+            </button>
+            <button className="btn" onClick={() => updateClick(editDetails)}>
+              Update
+            </button>
+          </>
         ) : (
           <>
+            <button className="btn" onClick={backClick}>
+              Back
+            </button>
             <button className="btn" onClick={editClick}>
               Edit
             </button>

@@ -29,14 +29,6 @@ const Nav = () => {
         >
           All Logs
         </li>
-        <li
-          className={
-            context.active === 3 ? "navList--item active" : "navList--item"
-          }
-          onClick={() => _changeActive(3)}
-        >
-          Add Log
-        </li>
       </ul>
     </nav>
   );
