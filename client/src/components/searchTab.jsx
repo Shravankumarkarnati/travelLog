@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
-import API from "../utils/api";
 import useDebouncedSearch from "./useDebouncedSearch.hook";
-import "./styles/searchTab.scss";
-import { RiSearchLine } from "react-icons/ri";
+
 import PopUpContext from "../utils/context";
+import API from "../utils/api";
+
+import { RiSearchLine } from "react-icons/ri";
+import "./styles/searchTab.scss";
+import Loader from "./loader";
 
 const SearchTab = () => {
   const api = new API();
@@ -67,7 +70,7 @@ const SearchTab = () => {
               );
             })
           ) : searchResults.loading ? (
-            <h1>Loading</h1>
+            <Loader />
           ) : null}
         </ul>
       </div>
