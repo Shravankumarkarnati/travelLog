@@ -6,11 +6,13 @@ import API from "../utils/api";
 import SelectedLog from "./selectedLog";
 import Nav from "./nav";
 import SearchTab from "./searchTab";
-import { GoPerson } from "react-icons/go";
 import CreateLog from "./createLog";
+import AllLogs from "./allLogs";
+
+import { GoPerson } from "react-icons/go";
+import { RiMapFill } from "react-icons/ri";
 
 import "./styles/allLogs.scss";
-import AllLogs from "./allLogs";
 
 const SideBody = () => {
   const { context, changeContext } = useContext(PopUpContext);
@@ -110,9 +112,6 @@ const SideBody = () => {
 
   return (
     <div className="sideBody">
-      <header>
-        <h1> Travel Log </h1>
-      </header>
       <Nav />
       <main>
         {
@@ -125,7 +124,10 @@ const SideBody = () => {
         <GoPerson title="Login" />
       </div>
       <footer>
-        <p>Shravan Kumar Karnati &copy;</p>
+        <div className="icon">
+          <RiMapFill />
+        </div>
+        <p>Travel Log By Shravan Kumar Karnati </p>
       </footer>
     </div>
   );

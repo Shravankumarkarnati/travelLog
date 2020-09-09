@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
-import "./app.scss";
 import MainBody from "./components/mainBody";
 import SideBody from "./components/sideBody";
 
 import PopUpContext from "./utils/context";
+
+import "./app.scss";
+import "./components/styles/mediaQueries/main.scss";
 
 function App() {
   const context = useContext(PopUpContext);

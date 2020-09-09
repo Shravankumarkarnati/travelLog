@@ -8,7 +8,6 @@
 }
 
 html {
-    font-size: 62.5%;
     font-family: 'Rubik', sans-serif;
 }
 
@@ -35,6 +34,7 @@ html {
         width: 100%;
         text-align: center;
 
+
         h1 {
             font-size: 4rem;
             text-transform: uppercase;
@@ -55,6 +55,26 @@ html {
     & footer {
         font-size: 1.3rem;
         padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 1rem;
+
+        .icon {
+            margin-right: 2rem;
+
+            & svg {
+                width: 5rem;
+                height: 5rem;
+
+                & svg {
+                    width: 100%;
+                    height: 100%;
+                    fill: black;
+                }
+            }
+        }
 
         &:hover {
             background: black;

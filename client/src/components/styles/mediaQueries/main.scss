@@ -1,0 +1,42 @@
+$screen-4k: 1920px;
+$screen-desktop: 1440px;
+$screen-tabletL: 1024px;
+$screen-tabletP: 786px;
+$screen-mobileL: 500px;
+$screen-mobileM: 400px;
+$screen-mobileS: 350px;
+
+html {
+
+    @media only screen and (min-width: $screen-4k) {
+        font-size: 90%;
+    }
+
+    @media only screen and (max-width: $screen-4k) {
+        font-size: 70%;
+    }
+
+    @media only screen and (max-width: $screen-desktop) {
+        font-size: 62.5%;
+    }
+
+    @media only screen and (max-width: $screen-tabletL) {
+        font-size: 60%;
+    }
+
+    @media only screen and (max-width: $screen-tabletP) {
+        font-size: 50%;
+    }
+
+    @media only screen and (max-width: $screen-mobileL) {
+        font-size: 30%;
+    }
+
+    @media only screen and (max-width: $screen-mobileM) {
+        font-size: 25%;
+    }
+
+    @media only screen and (max-width: $screen-mobileS) {
+        font-size: 20%;
+    }
+}
